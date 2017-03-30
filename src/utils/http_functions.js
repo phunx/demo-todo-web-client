@@ -22,14 +22,14 @@ export function get_github_access() {
 }
 
 export function create_user(email, password) {
-    return axios.post('api/create_user', {
+    return axios.post('api/users', {
         email,
         password,
     });
 }
 
 export function get_token(email, password) {
-    return axios.post('api/get_token', {
+    return axios.post('api/token', {
         email,
         password,
     });

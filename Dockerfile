@@ -1,8 +1,8 @@
 FROM node:7.7
-RUN mkdir /src
+COPY package.json /tmp/package.json
+RUN cd /tmp && npm install
+RUN mkdir /src && cp -a /tmp/node_modules /src
 WORKDIR /src
-COPY package.json /src/
-RUN npm install
 COPY . /src/
 RUN npm run build:production
 
