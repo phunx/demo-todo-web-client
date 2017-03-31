@@ -1,9 +1,15 @@
-FROM node:7.7
-COPY package.json /tmp/package.json
-RUN cd /tmp && npm install
-RUN mkdir /src && cp -a /tmp/node_modules /src
-WORKDIR /src
-COPY . /src/
+FROM node:7
+
+MAINTAINER Justin Ferrieu
+
+RUN mkdir -p /srv/webapp
+
+COPY package.json /srv/webapp
+
+WORKDIR /srv/webapp
+RUN npm install --quiet
+COPY . /srv/webapp
+
 RUN npm run build:production
 
 EXPOSE 3000
